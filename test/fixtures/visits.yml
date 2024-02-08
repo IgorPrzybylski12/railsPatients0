@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  topic: MyString
+  patient: MyString
+  doctor: MyString
+  begining: 2024-02-07 13:42:25
+  ending: 2024-02-07 13:42:25
+
+two:
+  topic: MyString
+  patient: MyString
+  doctor: MyString
+  begining: 2024-02-07 13:42:25
+  ending: 2024-02-07 13:42:25
