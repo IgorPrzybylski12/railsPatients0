@@ -36,7 +36,12 @@
     <%= form.datetime_field :ending %>
   </div>
   <div>
-    <%= form.number_field :user_id, value: current_user.id, id: :visit_user_id, type: :hidden  %>
+    <% if current_user.email == "admin@szpital" %>
+      <%= form.label :doctor, style: "display: block" %>
+      <%= form.number_field :user_id, id: :visit_user_id  %>
+    <% else %>
+      <%= form.number_field :user_id, value: current_user.id, id: :visit_user_id, type: :hidden  %>
+    <% end %>
   </div>
   <div>
     <%= form.submit %>

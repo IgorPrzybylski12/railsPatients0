@@ -3,6 +3,8 @@ class VisitsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+
+
   # GET /visits or /visits.json
   def index
     @visits = Visit.all
@@ -14,8 +16,11 @@ class VisitsController < ApplicationController
 
   # GET /visits/new
   def new
-    #@visit = Visit.new
-    @visit = current_user.visits.build
+    if current_user.email == "admin@szpital"
+      @visit = Visit.new
+    else
+      @visit = current_user.visits.build
+    end
   end
 
   # GET /visits/1/edit
@@ -25,7 +30,11 @@ class VisitsController < ApplicationController
   # POST /visits or /visits.json
   def create
     #@visit = Visit.new(visit_params)
-    @visit = current_user.visits.build(visit_params)
+    if current_user.email == "admin@szpital"
+      @visit = Visit.new(visit_params)
+    else
+      @visit = current_user.visits.build(visit_params)
+    end
     respond_to do |format|
       if @visit.save
         format.html { redirect_to visit_url(@visit), notice: "Visit was successfully created." }
@@ -61,8 +70,14 @@ class VisitsController < ApplicationController
   end
 
   def correct_user
-    @visit = current_user.visits.find_by(id: params[:id])
-    redirect_to visits_path, notice: "Not Authorized To Edit This Visit" if @visit.nil?
+    puts "dzial"
+    if current_user.email == "admin@szpital"
+      puts "dzial"
+      @visits = Visit.all
+    else
+      @visit = current_user.visits.find_by(id: params[:id])
+      redirect_to visits_path, notice: "Not Authorized To Edit This Visit" if @visit.nil?
+    end
   end
 
   private

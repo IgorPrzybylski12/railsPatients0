@@ -8,6 +8,12 @@
       <p>
         <%= link_to "Show this visit", visit %>
       </p>
+
+    <% elsif current_user.email == "admin@szpital" %>
+      <%= render visit %>
+       <p>
+        <%= link_to "Show this visit", visit %>
+      </p>
     <% end %>
   <% end %>
 </div>
