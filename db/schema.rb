@@ -45,7 +45,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_125850) do
   create_table "visits", force: :cascade do |t|
     t.string "topic"
     t.string "patient"
-    t.string "doctor"
     t.datetime "begining"
     t.datetime "ending"
     t.datetime "created_at", null: false
