@@ -18,7 +18,7 @@
 
   <div>
     <%= form.label :patient, style: "display: block" %>
-    <%= form.text_field :patient %>
+    <%= form.collection_select :patient, Patient.all, :full_name, :full_name, { prompt: "Select Patient" } %>
   </div>
 
   <div>
@@ -33,6 +33,7 @@
   <div>
     <% if current_user.email == "admin@szpital" %>
       <%= form.label :doctor, style: "display: block" %>
+      <!--<%= form.collection_select :patient_id, Patient.all, :id, :first_name, { prompt: "Select Patient" } %>-->
       <%= form.number_field :user_id, id: :visit_user_id  %>
     <% else %>
       <%= form.number_field :user_id, value: current_user.id, id: :visit_user_id, type: :hidden  %>
