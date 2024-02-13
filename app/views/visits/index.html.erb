@@ -3,13 +3,7 @@
 <h1>Visits</h1>
 <div id="visits">
   <% @visits.each do |visit| %>
-    <% if visit.user == current_user %>
-      <%= render visit %>
-      <p>
-        <%= link_to "Show this visit", visit %>
-      </p>
-
-    <% elsif current_user.email == "admin@szpital" %>
+    <% if current_user.email == "admin@szpital" %>
       <%= render visit %>
        <p>
         <%= link_to "Show this visit", visit %>

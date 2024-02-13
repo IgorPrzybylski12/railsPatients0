@@ -1,12 +1,12 @@
 class Visit < ApplicationRecord
-  belongs_to :user
+  belongs_to :doctor
 
   validate :no_other_visits_between_beginning_and_ending
 
   private
 
   def no_other_visits_between_beginning_and_ending
-    if Visit.where(user_id: user_id)
+    if Visit.where(doctor_id: doctor_id)
             .where.not(id: id) # exclude current visit if updating
             .where("begining <= ? AND ending >= ?", ending, begining)
             .exists?

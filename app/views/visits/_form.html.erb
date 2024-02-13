@@ -31,12 +31,8 @@
     <%= form.datetime_field :ending %>
   </div>
   <div>
-    <% if current_user.email == "admin@szpital" %>
-      <%= form.label :user_id, "Doctor:", style: "display: block" %>
-      <%= form.collection_select :user_id, User.all, :id, :email, { prompt: "Select Doctor" } %>
-    <% else %>
-      <%= form.number_field :user_id, value: current_user.id, id: :visit_user_id, type: :hidden  %>
-    <% end %>
+      <%= form.label :doctor_id, "Doctor:", style: "display: block" %>
+      <%= form.collection_select :doctor_id, Doctor.all, :id, :full_name, { prompt: "Select Doctor" } %>
   </div>
   <div>
     <%= form.submit %>
