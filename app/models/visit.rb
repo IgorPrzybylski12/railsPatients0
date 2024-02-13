@@ -1,8 +1,7 @@
 class Visit < ApplicationRecord
   belongs_to :doctor
 
-  validate :no_other_visits_between_beginning_and_ending
-  validate :ending_must_be_later_the_beginning
+  validate :no_other_visits_between_beginning_and_ending, :ending_must_be_later_the_beginning, :must_choose_patient
 
   private
 
@@ -19,5 +18,11 @@ class Visit < ApplicationRecord
     if ending <= begining
       errors.add(:base, "Ending must be later the beginning")
     end
+  end
+
+  def must_choose_patient
+      if !patient.nil?
+        errors.add(:base, "You must choose a patient")
+      end
   end
 end
